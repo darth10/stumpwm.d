@@ -2,10 +2,10 @@
 
 (in-package :cl-user)
 (defpackage darth10-stumpwm
-  (:use :cl :stumpwm))
+  (:use :cl :clx-truetype :stumpwm))
 (in-package :darth10-stumpwm)
 
-(set-module-dir "~/.stumpwm.d/stumpwm-contrib")
+(set-module-dir "~/.stumpwm.d/stumpwm-contrib/")
 
 (set-prefix-key (kbd "s-x"))
 
@@ -19,7 +19,9 @@
 (run-shell-command "xkbset accessx sticky -twokey latchlock")
 (run-shell-command "xkbset exp 1 '=accessx' '=sticky' '=twokey' '=latchlock'")
 
-(set-font "-MS  -Consolas-normal-normal-normal-*-20-*-*-*-m-0-iso10646-1")
+;; set font
+(load-module "ttf-fonts")
+(set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 11))
 
 (load-module "cpu")
 (load-module "net")
