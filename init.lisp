@@ -2,7 +2,7 @@
 
 (in-package :cl-user)
 (defpackage darth10-stumpwm
-  (:use :cl :clx-truetype :stumpwm))
+  (:use :cl :stumpwm))
 (in-package :darth10-stumpwm)
 
 (set-module-dir "~/.stumpwm.d/modules")
@@ -33,11 +33,13 @@
   (setf al/battery-mode-string " ^7*%B"
         battery-portable:*refresh-time* 30))
 
-(set-normal-gravity :bottom)
+(set-normal-gravity :center)
 
 (setf
- *message-window-gravity* :bottom-right
- *input-window-gravity*   :center
+ *message-window-gravity* :top-right
+ *input-window-gravity*   :top-right
+ *mode-line-position*     :bottom
+ *window-border-style*    :thin
 
  *window-info-format*
  (format nil "^>^B^5*%c ^b^6*%w^7*x^6*%h^7*~%%t")
