@@ -5,7 +5,7 @@
   (:use :cl :clx-truetype :stumpwm))
 (in-package :darth10-stumpwm)
 
-(set-module-dir "~/.stumpwm.d/stumpwm-contrib/")
+(set-module-dir "~/.stumpwm.d/modules")
 
 (set-prefix-key (kbd "s-x"))
 
