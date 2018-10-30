@@ -48,8 +48,11 @@
  (format nil "^5*%H:%M:%S~%^2*%A~%^7*%d %B")
 
  *mode-line-timeout* 5
+ *mode-line-background-color* "Black"
+ *mode-line-border-color* "Black"
+
  *screen-mode-line-format*
- '("^5*" (:eval (time-format "%k:%M"))
+ '("^5*" (:eval (time-format "%k:%M:%S"))
    " ^2*%n"                     ; group name
    " ^7*%c"                     ; cpu
    " ^6*%l"                     ; net
@@ -62,3 +65,6 @@
   (enable-mode-line (current-screen) (current-head) t))
 
 (darth10-stumpwm/mode-line-on)
+
+(load-module "stumptray")
+(stumptray:stumptray)
