@@ -20,6 +20,7 @@
 
 (run-shell-command "feh --bg-fill ~/Dropbox/imgs/wallpapers/starf0rge.png")
 (run-shell-command "xscreensaver -no-splash")
+(run-shell-command "xfce4-power-manager")
 (run-shell-command "wicd-client -t")
 (run-shell-command "dropbox start")
 
