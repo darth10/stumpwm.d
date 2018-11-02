@@ -1,9 +1,9 @@
 ;; -*-lisp-*-
 
 (in-package :cl-user)
-(defpackage darth10-stumpwm
+(defpackage d10
   (:use :cl :stumpwm))
-(in-package :darth10-stumpwm)
+(in-package :d10)
 
 (set-module-dir "~/.stumpwm.d/modules")
 
@@ -32,15 +32,24 @@
 (load-module "net")
 (load-module "battery-portable")
 
-(defvar al/battery-mode-string "")
+(defvar d10/battery-mode-string "")
 
 (when (probe-file "/sys/class/power_supply/BAT0")
-  (setf al/battery-mode-string " ^7*%B"
+  (setf d10/battery-mode-string " ^7*%B"
         battery-portable:*refresh-time* 30))
 
 (set-normal-gravity :center)
 
 (setf
+ *colors* '("black"
+            "red"
+            "white"
+            "yellow"
+            "orange"
+            "green"
+            "orange"
+            "white")
+
  *message-window-gravity* :top-right
  *input-window-gravity*   :top-right
  *mode-line-position*     :bottom
@@ -57,19 +66,20 @@
  *mode-line-border-color* "Black"
 
  *screen-mode-line-format*
- '("^5*" (:eval (time-format "%k:%M:%S"))
+ '("^5*" (:eval (time-format "%a %b %d %k:%M:%S"))
    " ^2*%n"                     ; group name
-   " ^7*%c"                     ; cpu
+   " ^7*%c %t"                  ; cpu
    " ^6*%l"                     ; net
-   al/battery-mode-string)
+   d10/battery-mode-string)
 
  *mouse-focus-policy* :click)
 
-(defcommand darth10-stumpwm/mode-line-on () ()
+(defcommand d10/mode-line-on () ()
   "Turn the mode line on unconditionally."
   (enable-mode-line (current-screen) (current-head) t))
 
-(darth10-stumpwm/mode-line-on)
+(update-color-map (current-screen))
+(d10/mode-line-on)
 
 (load-module "stumptray")
 (stumptray:stumptray)
