@@ -21,7 +21,7 @@
 (run-shell-command "feh --bg-fill ~/Dropbox/imgs/wallpapers/starf0rge.png")
 (run-shell-command "xscreensaver -no-splash")
 (run-shell-command "xfce4-power-manager")
-(run-shell-command "wicd-client -t")
+(run-shell-command "if ! pgrep -x 'wicd-client' > /dev/null; then wicd-client -t; fi")
 (run-shell-command "dropbox start")
 
 ;; set font
