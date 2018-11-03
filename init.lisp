@@ -24,19 +24,12 @@
 (run-shell-command "if ! pgrep -x 'wicd-client' > /dev/null; then wicd-client -t; fi")
 (run-shell-command "dropbox start")
 
-;; set font
 (load-module "ttf-fonts")
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 11))
 
 (load-module "cpu")
-(load-module "net")
+(load-module "mem")
 (load-module "battery-portable")
-
-(defvar d10/battery-mode-string "")
-
-(when (probe-file "/sys/class/power_supply/BAT0")
-  (setf d10/battery-mode-string " ^7*%B"
-        battery-portable:*refresh-time* 30))
 
 (set-normal-gravity :center)
 
@@ -50,16 +43,13 @@
             "orange"
             "white")
 
- *message-window-gravity* :top-right
- *input-window-gravity*   :top-right
+ *message-window-gravity* :center
+ *input-window-gravity*   :center
  *mode-line-position*     :bottom
  *window-border-style*    :thin
 
  *window-info-format*
  (format nil "^>^B^5*%c ^b^6*%w^7*x^6*%h^7*~%%t")
-
- *time-format-string-default*
- (format nil "^5*%H:%M:%S~%^2*%A~%^7*%d %B")
 
  *mode-line-timeout* 5
  *mode-line-background-color* "Black"
@@ -67,19 +57,18 @@
 
  *screen-mode-line-format*
  '("^5*" (:eval (time-format "%a %b %d %k:%M:%S"))
-   " ^2*%n"                     ; group name
-   " ^7*%c %t"                  ; cpu
-   " ^6*%l"                     ; net
-   d10/battery-mode-string)
+   " ^2* %n "                   ; group name
+   " ^5*%c %t"                  ; cpu
+   " ^5*%M"                     ; mem
+   " ^5*BAT: %B"                ; battery
+   )
 
- *mouse-focus-policy* :click)
-
-(defcommand d10/mode-line-on () ()
-  "Turn the mode line on unconditionally."
-  (enable-mode-line (current-screen) (current-head) t))
+ *mouse-focus-policy* :sloppy)
 
 (update-color-map (current-screen))
-(d10/mode-line-on)
+(enable-mode-line (current-screen) (current-head) t)
 
 (load-module "stumptray")
-(stumptray:stumptray)
+(in-package :stumptray)
+(if (not (current-tray))
+    (stumptray))
