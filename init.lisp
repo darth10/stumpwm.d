@@ -7,11 +7,20 @@
 
 (set-module-dir "~/.stumpwm.d/modules")
 
+;; TODO split into different files
+
+(ql:quickload :swank)
+(swank:create-server
+ :dont-close t
+ :port swank::default-server-port)
+
 (set-prefix-key (kbd "s-x"))
+
+(defun d10/define-key (map key command)
+  (define-key map (kbd key) command))
 
 (defcommand logout (surep)
   ((:y-or-n "Are you sure you want to logout, killing all your programs?"))
-  "Quit StumpWM, after making sure you really want to do that."
   (if surep (quit) t))
 
 (run-shell-command "xmodmap /home/darth10/.xmodmap")
@@ -80,12 +89,38 @@
   "Decrease sound volume"
   (run-shell-command "pactl -- set-sink-volume 0 -10%"))
 
-(defun d10/define-key (map key command)
-  (define-key map (kbd key) command))
+(defcommand run-or-raise-emacs () ()
+  (run-or-raise "emacs --debug-init" '(:class "Emacs")))
+
+(defcommand run-or-raise-chrome () ()
+  (run-or-raise "google-chrome" '(:class "Google-chrome")))
+
+(defcommand run-or-raise-terminal () ()
+  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
+
+(defcommand run-htop () ()
+  (run-shell-command "xfce4-terminal -e htop"))
 
 (d10/define-key *top-map* "XF86AudioMute" "sound-toggle")
 (d10/define-key *top-map* "XF86AudioRaiseVolume" "sound-increase")
 (d10/define-key *top-map* "XF86AudioLowerVolume" "sound-decrease")
+
+(d10/define-key *top-map* "s-d" "run-shell-command thunar")
+(d10/define-key *top-map* "s-l" "run-shell-command xflock4")
+(d10/define-key *top-map* "s-SPC" "pull-hidden-next")
+(d10/define-key *top-map* "s-Left" "gprev")
+(d10/define-key *top-map* "s-Right" "gnext")
+(d10/define-key *top-map* "s-F4" "delete")
+
+(d10/define-key *top-map* "s-t" "run-htop")
+(d10/define-key *top-map* "s-c" "run-or-raise-terminal")
+(d10/define-key *top-map* "s-F5" "run-or-raise-chrome")
+(d10/define-key *top-map* "s-F8" "run-or-raise-emacs")
+
+(d10/define-key *root-map* "t" "run-htop")
+(d10/define-key *root-map* "c" "run-or-raise-terminal")
+(d10/define-key *root-map* "u" "run-or-raise-chrome")
+(d10/define-key *root-map* "e" "run-or-raise-emacs")
 
 (load-module "stumptray")
 (in-package :stumptray)
