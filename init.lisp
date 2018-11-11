@@ -63,10 +63,29 @@
    " ^5*BAT: %B"                ; battery
    )
 
- *mouse-focus-policy* :sloppy)
+ *mouse-focus-policy* :click)
 
 (update-color-map (current-screen))
 (enable-mode-line (current-screen) (current-head) t)
+
+(defcommand sound-toggle () ()
+  "Toggle sound"
+  (run-shell-command "pactl set-sink-mute 0 toggle"))
+
+(defcommand sound-increase () ()
+  "Increase sound volume"
+  (run-shell-command "pactl -- set-sink-volume 0 +10%"))
+
+(defcommand sound-decrease () ()
+  "Decrease sound volume"
+  (run-shell-command "pactl -- set-sink-volume 0 -10%"))
+
+(defun d10/define-key (map key command)
+  (define-key map (kbd key) command))
+
+(d10/define-key *top-map* "XF86AudioMute" "sound-toggle")
+(d10/define-key *top-map* "XF86AudioRaiseVolume" "sound-increase")
+(d10/define-key *top-map* "XF86AudioLowerVolume" "sound-decrease")
 
 (load-module "stumptray")
 (in-package :stumptray)
