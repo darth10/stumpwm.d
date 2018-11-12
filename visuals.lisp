@@ -29,11 +29,11 @@
  *mode-line-border-color* "Black"
 
  *screen-mode-line-format*
- '("^5*" (:eval (time-format "%a %b %d %k:%M:%S"))
-   " ^2* %n "                   ; group name
+ '("^2*" (:eval (time-format "%a %b %d %k:%M:%S"))
    " ^5*%c %t"                  ; cpu
    " ^5*%M"                     ; mem
    " ^5*BAT: %B"                ; battery
+   " ^2* %g"                    ; groups
    )
 
  *mouse-focus-policy* :click)
