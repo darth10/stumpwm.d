@@ -6,13 +6,18 @@
 (in-package :d10)
 
 (set-module-dir "~/.stumpwm.d/modules")
+(redirect-all-output (data-dir-file "debug" "log"))
 
 ;; TODO split into different files
 
-(ql:quickload :swank)
-(swank:create-server
- :dont-close t
- :port swank::default-server-port)
+(handler-case
+    (progn
+      (ql:quickload :swank)
+      (swank:create-server
+       :dont-close t
+       :port swank::default-server-port))
+  (error (c)
+    (format t "Error starting swank: ~a~%" c)))
 
 (set-prefix-key (kbd "s-x"))
 
