@@ -12,7 +12,7 @@
        :dont-close t
        :port swank::default-server-port))
   (error (c)
-    (format t "Error starting swank: ~a~%" c)))
+    (format *error-output* "Error starting swank: ~a~%" c)))
 
 (defun d10/define-key (map key command)
   (define-key map (kbd key) command))
