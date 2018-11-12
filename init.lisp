@@ -14,8 +14,6 @@
   (error (c)
     (format t "Error starting swank: ~a~%" c)))
 
-(set-prefix-key (kbd "s-x"))
-
 (defun d10/define-key (map key command)
   (define-key map (kbd key) command))
 
@@ -33,33 +31,8 @@
 
 (set-module-dir (merge-pathnames "modules" d10/init-directory))
 
-(defcommand logout (surep)
-  ((:y-or-n "Are you sure you want to logout, killing all your programs?"))
-  (if surep (quit) t))
-
-(defcommand sound-toggle () ()
-  "Toggle sound"
-  (run-shell-command "pactl set-sink-mute 0 toggle"))
-
-(defcommand sound-increase () ()
-  "Increase sound volume"
-  (run-shell-command "pactl -- set-sink-volume 0 +10%"))
-
-(defcommand sound-decrease () ()
-  "Decrease sound volume"
-  (run-shell-command "pactl -- set-sink-volume 0 -10%"))
-
-(defcommand run-or-raise-emacs () ()
-  (run-or-raise "emacs --debug-init" '(:class "Emacs")))
-
-(defcommand run-or-raise-chrome () ()
-  (run-or-raise "google-chrome" '(:class "Google-chrome")))
-
-(defcommand run-or-raise-terminal () ()
-  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
-
-(defcommand run-htop () ()
-  (run-shell-command "xfce4-terminal -e htop"))
+;; TODO split into more files
+(d10/load "commands")
 
 (run-shell-command "xmodmap /home/darth10/.xmodmap")
 (run-shell-command "xkbset accessx sticky -twokey latchlock")
@@ -115,12 +88,14 @@
 (update-color-map (current-screen))
 (enable-mode-line (current-screen) (current-head) t)
 
+(set-prefix-key (kbd "s-x"))
+
 (d10/define-key *top-map* "XF86AudioMute" "sound-toggle")
 (d10/define-key *top-map* "XF86AudioRaiseVolume" "sound-increase")
 (d10/define-key *top-map* "XF86AudioLowerVolume" "sound-decrease")
 
 (d10/define-key *top-map* "s-d" "run-shell-command thunar")
-(d10/define-key *top-map* "s-l" "run-shell-command xflock4")
+(d10/define-key *top-map* "s-l" "lock")
 (d10/define-key *top-map* "s-SPC" "pull-hidden-next")
 (d10/define-key *top-map* "s-Left" "gprev")
 (d10/define-key *top-map* "s-Right" "gnext")
