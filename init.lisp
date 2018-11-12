@@ -33,5 +33,5 @@
 
 (d10/load "commands")
 (d10/load "keys")
-(d10/load "visual")
-(d10/load "startup")
+(d10/load "visuals")
+(d10/load "programs")
