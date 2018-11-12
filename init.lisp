@@ -5,8 +5,7 @@
   (:use :cl :stumpwm))
 (in-package :d10)
 
-(set-module-dir "~/.stumpwm.d/modules")
-(redirect-all-output (data-dir-file "debug" "log"))
+(redirect-all-output (data-dir-file "stumpwm-debug" "log"))
 
 ;; TODO split into different files
 
@@ -24,9 +23,47 @@
 (defun d10/define-key (map key command)
   (define-key map (kbd key) command))
 
+(defvar d10/init-directory
+  (directory-namestring
+   (truename (merge-pathnames (user-homedir-pathname)
+                              ".stumpwmrc"))))
+
+(defun d10/load (filename)
+  (let ((file (merge-pathnames (concat filename ".lisp")
+                               d10/init-directory)))
+    (if (probe-file file)
+        (load file)
+        (format *error-output* "File '~a' doesn't exist." file))))
+
+(set-module-dir (merge-pathnames "modules" d10/init-directory))
+
 (defcommand logout (surep)
   ((:y-or-n "Are you sure you want to logout, killing all your programs?"))
   (if surep (quit) t))
+
+(defcommand sound-toggle () ()
+  "Toggle sound"
+  (run-shell-command "pactl set-sink-mute 0 toggle"))
+
+(defcommand sound-increase () ()
+  "Increase sound volume"
+  (run-shell-command "pactl -- set-sink-volume 0 +10%"))
+
+(defcommand sound-decrease () ()
+  "Decrease sound volume"
+  (run-shell-command "pactl -- set-sink-volume 0 -10%"))
+
+(defcommand run-or-raise-emacs () ()
+  (run-or-raise "emacs --debug-init" '(:class "Emacs")))
+
+(defcommand run-or-raise-chrome () ()
+  (run-or-raise "google-chrome" '(:class "Google-chrome")))
+
+(defcommand run-or-raise-terminal () ()
+  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
+
+(defcommand run-htop () ()
+  (run-shell-command "xfce4-terminal -e htop"))
 
 (run-shell-command "xmodmap /home/darth10/.xmodmap")
 (run-shell-command "xkbset accessx sticky -twokey latchlock")
@@ -81,30 +118,6 @@
 
 (update-color-map (current-screen))
 (enable-mode-line (current-screen) (current-head) t)
-
-(defcommand sound-toggle () ()
-  "Toggle sound"
-  (run-shell-command "pactl set-sink-mute 0 toggle"))
-
-(defcommand sound-increase () ()
-  "Increase sound volume"
-  (run-shell-command "pactl -- set-sink-volume 0 +10%"))
-
-(defcommand sound-decrease () ()
-  "Decrease sound volume"
-  (run-shell-command "pactl -- set-sink-volume 0 -10%"))
-
-(defcommand run-or-raise-emacs () ()
-  (run-or-raise "emacs --debug-init" '(:class "Emacs")))
-
-(defcommand run-or-raise-chrome () ()
-  (run-or-raise "google-chrome" '(:class "Google-chrome")))
-
-(defcommand run-or-raise-terminal () ()
-  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
-
-(defcommand run-htop () ()
-  (run-shell-command "xfce4-terminal -e htop"))
 
 (d10/define-key *top-map* "XF86AudioMute" "sound-toggle")
 (d10/define-key *top-map* "XF86AudioRaiseVolume" "sound-increase")
