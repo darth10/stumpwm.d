@@ -17,6 +17,8 @@
 (d10/define-key *top-map* "s-c" "run-or-raise-terminal")
 (d10/define-key *top-map* "s-F5" "run-or-raise-chrome")
 (d10/define-key *top-map* "s-F8" "run-or-raise-emacs")
+(d10/define-key *top-map* "s-u" "run-or-raise-chrome")
+(d10/define-key *top-map* "s-e" "run-or-raise-emacs")
 
 (d10/define-key *root-map* "t" "run-htop")
 (d10/define-key *root-map* "c" "run-or-raise-terminal")
