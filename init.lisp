@@ -1,13 +1,9 @@
-;; -*-lisp-*-
-
-(in-package :cl-user)
 (defpackage d10
   (:use :cl :stumpwm))
+
 (in-package :d10)
 
 (redirect-all-output (data-dir-file "stumpwm-debug" "log"))
-
-;; TODO split into different files
 
 (handler-case
     (progn
