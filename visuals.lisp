@@ -28,6 +28,9 @@
  *mode-line-background-color* "Black"
  *mode-line-border-color* "Black"
 
+ *maxsize-border-width*   1
+ *normal-border-width*    8
+
  *screen-mode-line-format*
  '("^2*" (:eval (time-format "%a %b %d %k:%M:%S"))
    " ^5*%c %t"                  ; cpu
@@ -37,6 +40,8 @@
    )
 
  *mouse-focus-policy* :click)
+
+(set-focus-color "Black")
 
 (update-color-map (current-screen))
 (enable-mode-line (current-screen) (current-head) t)
