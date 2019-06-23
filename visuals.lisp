@@ -27,6 +27,7 @@
  *mode-line-timeout* 5
  *mode-line-background-color* "Black"
  *mode-line-border-color* "Black"
+ *mode-line-border-width* 8
 
  *maxsize-border-width*   1
  *normal-border-width*    8
