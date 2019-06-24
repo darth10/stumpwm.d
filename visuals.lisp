@@ -1,9 +1,12 @@
-(in-package :d10)
-
 (load-module "ttf-fonts")
 (load-module "cpu")
 (load-module "mem")
 (load-module "battery-portable")
+
+(in-package :cpu)
+(setf *cpu-modeline-fmt* "%c %t")
+
+(in-package :d10)
 
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 11))
 
@@ -34,10 +37,10 @@
 
  *screen-mode-line-format*
  '("^2*" (:eval (time-format "%a %b %d %k:%M:%S"))
-   " ^5*%c %t"                  ; cpu
-   " ^5*%M"                     ; mem
-   " ^5*BAT: %B"                ; battery
-   " ^2* %g"                    ; groups
+   " ^5* %C"                     ; cpu
+   " ^5* %M"                     ; mem
+   " ^5* BAT:  %B"               ; battery
+   " ^2*  %g"                    ; groups
    )
 
  *mouse-focus-policy* :click)
