@@ -5,12 +5,12 @@
 
 (redirect-all-output (data-dir-file "stumpwm-debug" "log"))
 
-(ql:quickload :swank)
+(ql:quickload :slynk)
 (handler-case
     (progn
-      (swank:create-server
+      (slynk:create-server
        :dont-close t
-       :port swank::default-server-port))
+       :port slynk::default-server-port))
   (error (c)
     (format *error-output* "Error starting swank: ~a~%" c)))
 
