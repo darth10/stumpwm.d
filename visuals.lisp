@@ -8,7 +8,7 @@
 
 (in-package :d10)
 
-(set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 11))
+(set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 12))
 
 (set-normal-gravity :center)
 
@@ -31,9 +31,10 @@
  *mode-line-background-color* "Black"
  *mode-line-border-color* "Black"
  *mode-line-border-width* 8
+ *mode-line-pad-y*  4
 
- *maxsize-border-width*   1
- *normal-border-width*    8
+ *maxsize-border-width*   2
+ *normal-border-width*    2
 
  *screen-mode-line-format*
  '("^2*" (:eval (time-format "%a %b %d %k:%M:%S"))
