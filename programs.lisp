@@ -9,3 +9,5 @@
 (run-shell-command "xfce4-power-manager")
 (run-shell-command "if ! pgrep -x 'wicd-client' > /dev/null; then wicd-client -t; fi")
 (run-shell-command "dropbox start")
+(run-shell-command "blueman-applet")
+(run-shell-command "KEYBASE_AUTOSTART=1 run_keybase")
