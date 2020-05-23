@@ -7,7 +7,7 @@
 (run-shell-command "feh --bg-fill ~/Dropbox/imgs/wallpapers/starf0rge.png")
 (run-shell-command "xscreensaver -no-splash")
 (run-shell-command "xfce4-power-manager")
-(run-shell-command "if ! pgrep -x 'wicd-client' > /dev/null; then wicd-client -t; fi")
+(run-shell-command "nm-applet")
 (run-shell-command "dropbox start")
 (run-shell-command "blueman-applet")
 (run-shell-command "KEYBASE_AUTOSTART=1 run_keybase")
