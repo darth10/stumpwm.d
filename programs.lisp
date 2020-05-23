@@ -10,4 +10,3 @@
 (run-shell-command "nm-applet")
 (run-shell-command "dropbox start")
 (run-shell-command "blueman-applet")
-(run-shell-command "KEYBASE_AUTOSTART=1 run_keybase")
