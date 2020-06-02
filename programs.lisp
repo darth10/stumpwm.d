@@ -8,5 +8,6 @@
 (run-shell-command "xscreensaver -no-splash")
 (run-shell-command "xfce4-power-manager")
 (run-shell-command "nm-applet")
+(run-shell-command "xfce4-volumed")
 (run-shell-command "dropbox start")
 (run-shell-command "blueman-applet")
