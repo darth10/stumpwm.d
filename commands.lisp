@@ -26,7 +26,7 @@
   (run-or-raise "google-chrome" '(:class "Google-chrome")))
 
 (defcommand run-or-raise-terminal () ()
-  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
+  (run-or-raise "kitty" '(:class "kitty")))
 
 (defcommand run-htop () ()
-  (run-shell-command "xfce4-terminal -e htop"))
+  (run-shell-command "kitty -e htop"))
