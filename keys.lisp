@@ -5,10 +5,12 @@
 (d10/define-key *top-map* "XF86AudioMute" "sound-toggle")
 (d10/define-key *top-map* "XF86AudioRaiseVolume" "sound-increase")
 (d10/define-key *top-map* "XF86AudioLowerVolume" "sound-decrease")
+(d10/define-key *top-map* "XF86Launch1" "exec")
 
 (d10/define-key *top-map* "s-d" "run-shell-command thunar")
 (d10/define-key *top-map* "s-l" "lock")
-(d10/define-key *top-map* "s-SPC" "pull-hidden-next")
+(d10/define-key *top-map* "s-SPC" "exec")
+(d10/define-key *top-map* "s-TAB" "pull-hidden-next")
 (d10/define-key *top-map* "M-s-Left" "gprev")
 (d10/define-key *top-map* "M-s-Right" "gnext")
 (d10/define-key *top-map* "s-F4" "delete")
