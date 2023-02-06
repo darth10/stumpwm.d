@@ -9,6 +9,7 @@
 (run-shell-command "xfce4-power-manager")
 (run-shell-command "nm-applet")
 (run-shell-command "xfce4-volumed")
+(run-shell-command "redshift-gtk")
 (run-shell-command "pasystray")
 (run-shell-command "/home/darth10/.local/bin/pcloud")
 (run-shell-command "blueman-applet")
