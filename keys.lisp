@@ -13,6 +13,8 @@
 (d10/define-key *top-map* "M-s-Left" "gprev")
 (d10/define-key *top-map* "M-s-Right" "gnext")
 (d10/define-key *top-map* "s-F4" "delete")
+(d10/define-key *top-map* "s-#" "run-shell-command flameshot screen")
+(d10/define-key *top-map* "s-$" "run-shell-command flameshot gui")
 
 (d10/define-key *top-map* "s-t" "run-htop")
 (d10/define-key *top-map* "s-c" "run-or-raise-terminal")
