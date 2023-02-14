@@ -23,7 +23,7 @@
   (run-or-raise "emacs --debug-init" '(:class "Emacs")))
 
 (defcommand run-or-raise-chrome () ()
-  (run-or-raise "google-chrome" '(:class "Google-chrome")))
+  (run-or-raise "google-chrome-stable" '(:class "Google-chrome")))
 
 (defcommand run-or-raise-terminal () ()
   (run-or-raise "kitty" '(:class "kitty")))
