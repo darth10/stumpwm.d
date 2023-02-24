@@ -11,6 +11,7 @@
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 12))
 
 (set-normal-gravity :center)
+(set-transient-gravity :center)
 
 (setf
  *colors* '("black"
@@ -22,10 +23,13 @@
             "orange"
             "white")
 
- *message-window-gravity* :center
- *input-window-gravity*   :center
+ *message-window-gravity* :top-right
+ *input-window-gravity*   :top-right
  *mode-line-position*     :bottom
  *window-border-style*    :thin
+
+ *message-window-padding* 10
+ *message-window-y-padding* 10
 
  *mode-line-timeout* 5
  *mode-line-background-color* "Black"
