@@ -16,3 +16,6 @@
 (run-shell-command "blueman-applet")
 (run-shell-command "/opt/piavpn/bin/pia-client --quiet")
 (run-shell-command "/home/darth10/.local/bin/pcloud")
+
+(load-module "clipboard-history")
+(clipboard-history:start-clipboard-manager)

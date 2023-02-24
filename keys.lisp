@@ -29,3 +29,4 @@
 (d10/define-key *root-map* "u" "run-or-raise-chrome")
 (d10/define-key *root-map* "e" "run-or-raise-emacs")
 (d10/define-key *root-map* "d" "run-shell-command thunar")
+(d10/define-key *root-map* "M-y" "show-clipboard-history")
