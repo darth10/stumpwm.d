@@ -1,5 +1,7 @@
 (in-package :d10)
 
+(setf *shell-program* "/bin/zsh")
+
 (run-shell-command "xmodmap /home/darth10/.xmodmap")
 (run-shell-command "xkbset accessx sticky -twokey latchlock")
 (run-shell-command "xkbset exp 1 '=accessx' '=sticky' '=twokey' '=latchlock'")
